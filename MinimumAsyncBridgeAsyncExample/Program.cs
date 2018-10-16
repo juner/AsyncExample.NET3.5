@@ -17,26 +17,19 @@ namespace MinimumAsyncBridgeAsyncExample
                 TokenSource?.Cancel();
                 return false;
             }))
-                await MainRoop(TokenSource.Token);
+                await MainAction(TokenSource.Token);
+
         }
-        static async Task MainRoop(CancellationToken Token)
+        static async Task MainAction(CancellationToken Token)
         {
-            uint Number = 0;
-            var FriendlyName = System.AppDomain.CurrentDomain.FriendlyName;
-            Trace.WriteLine($"{FriendlyName} Start");
-            while (!Token.IsCancellationRequested)
-            {
-                try
-                {
-                    Trace.WriteLine($"{FriendlyName} {nameof(WaitTime)} {Number++}");
-                    await Task.Delay(WaitTime, Token);
-                }
-                catch (OperationCanceledException)
-                {
-                    Trace.WriteLine($"{FriendlyName} Cancel");
-                }
-            }
-            Trace.WriteLine($"{FriendlyName} End");
+            DateTime StartTime = DateTime.Now;
+            await Task.Run(() => Task4Action(StartTime, Token));
+            Trace.WriteLine($"Task3 {DateTime.Now - StartTime}");
+        }
+        static async Task Task4Action(DateTime StartTime, CancellationToken Token)
+        {
+            await Task.Delay(WaitTime, Token);
+            Trace.WriteLine($"Task4 {DateTime.Now - StartTime}");
         }
     }
 }
