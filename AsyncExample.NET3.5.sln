@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AsyncBridgeAsyncExample", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleUtils", "ConsoleUtils\ConsoleUtils.csproj", "{33F525A6-8C62-4256-B71E-7A79B4D3EA96}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AsyncExample.NET4.5", "AsyncExample.NET4.5\AsyncExample.NET4.5.csproj", "{72ED0D19-478E-4E74-A2EE-4C19156A2CA3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{33F525A6-8C62-4256-B71E-7A79B4D3EA96}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{33F525A6-8C62-4256-B71E-7A79B4D3EA96}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{33F525A6-8C62-4256-B71E-7A79B4D3EA96}.Release|Any CPU.Build.0 = Release|Any CPU
+		{72ED0D19-478E-4E74-A2EE-4C19156A2CA3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{72ED0D19-478E-4E74-A2EE-4C19156A2CA3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{72ED0D19-478E-4E74-A2EE-4C19156A2CA3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{72ED0D19-478E-4E74-A2EE-4C19156A2CA3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

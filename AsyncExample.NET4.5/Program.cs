@@ -10,7 +10,7 @@ namespace AsyncExampleNET45
 {
     class Program
     {
-        static readonly TimeSpan WaitTime = TimeSpan.FromSeconds(1);
+        static readonly TimeSpan WaitTime = TimeSpan.FromSeconds(20);
         static async Task Main(string[] args)
         {
             var listener = new TextWriterTraceListener(Console.Out);
@@ -20,26 +20,26 @@ namespace AsyncExampleNET45
                 TokenSource?.Cancel();
                 return false;
             }))
-                await MainRoop(TokenSource.Token);
+                await MainAction(TokenSource.Token);
+
         }
-        static async Task MainRoop(CancellationToken Token)
+        static async Task MainAction(CancellationToken Token)
         {
-            uint Number = 0;
-            var FriendlyName = System.AppDomain.CurrentDomain.FriendlyName;
-            Trace.WriteLine($"{FriendlyName} Start");
-            while (!Token.IsCancellationRequested)
-            {
-                try
-                {
-                    Trace.WriteLine($"{FriendlyName} {nameof(WaitTime)} {Number++}");
-                    await Task.Delay(WaitTime, Token);
-                }
-                catch (OperationCanceledException)
-                {
-                    Trace.WriteLine($"{FriendlyName} Cancel");
-                }
-            }
-            Trace.WriteLine($"{FriendlyName} End");
+            DateTime StartTime = DateTime.Now;
+            await Task.Factory.StartNew(() => Task2Action(StartTime, Token)).Unwrap();
+            Trace.WriteLine($"Task1 {DateTime.Now - StartTime}");
+            await Task.Run(() => Task4Action(StartTime, Token));
+            Trace.WriteLine($"Task3 {DateTime.Now - StartTime}");
+        }
+        static async Task Task2Action(DateTime StartTime, CancellationToken Token)
+        {
+            await Task.Delay(WaitTime, Token);
+            Trace.WriteLine($"Task2 {DateTime.Now - StartTime}");
+        }
+        static async Task Task4Action(DateTime StartTime, CancellationToken Token)
+        {
+            await Task.Delay(WaitTime, Token);
+            Trace.WriteLine($"Task4 {DateTime.Now - StartTime}");
         }
     }
 }
